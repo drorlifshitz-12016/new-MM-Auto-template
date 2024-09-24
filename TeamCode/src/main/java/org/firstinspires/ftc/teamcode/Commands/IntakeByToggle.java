@@ -3,10 +3,10 @@ package org.firstinspires.ftc.teamcode.Commands;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.MMRobot;
-import org.firstinspires.ftc.teamcode.SubSystems.Intake;
+import org.firstinspires.ftc.teamcode.SubSystems.RollerIntake;
 
 public class IntakeByToggle extends CommandBase {
-    Intake intake = MMRobot.getInstance().mmSystems.intake;
+    RollerIntake intake = MMRobot.getInstance().mmSystems.intake;
 
     public IntakeByToggle() {
         this.addRequirements(intake);

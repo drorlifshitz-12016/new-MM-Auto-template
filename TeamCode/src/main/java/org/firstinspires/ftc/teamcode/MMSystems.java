@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+import org.firstinspires.ftc.teamcode.Commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.Examples.ElevatorPIDExample.ExampleElevator;
 import org.firstinspires.ftc.teamcode.Libraries.CuttlefishFTCBridge.src.devices.CuttleRevHub;
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.Utils.MMBattery;
@@ -16,10 +17,11 @@ import org.firstinspires.ftc.teamcode.Libraries.MMLib.Examples.Subsystems.Shoote
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.Examples.Subsystems.ShooterPID;
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.Examples.Subsystems.ShooterTurret;
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.Utils.MMIMU;
-import org.firstinspires.ftc.teamcode.SubSystems.ArmAngle;
+import org.firstinspires.ftc.teamcode.SubSystems.Elevator;
+import org.firstinspires.ftc.teamcode.SubSystems.IntakeArm;
 import org.firstinspires.ftc.teamcode.SubSystems.Claw;
 import org.firstinspires.ftc.teamcode.SubSystems.DriveTrain;
-import org.firstinspires.ftc.teamcode.SubSystems.Intake;
+import org.firstinspires.ftc.teamcode.SubSystems.RollerIntake;
 import org.firstinspires.ftc.teamcode.SubSystems.LinearIntake;
 import org.firstinspires.ftc.teamcode.Utils.AllianceColor;
 import org.firstinspires.ftc.teamcode.Utils.AllianceSide;
@@ -53,10 +55,45 @@ public class MMSystems {
     public ShooterPID shooterPID;
     public ShooterTurret shooterTurret;
     public ExampleElevator exampleElevator;
-    public ArmAngle armAngle;
+    public IntakeArm armAngle;
     public LinearIntake linearIntake;
-    public Intake intake;
+    public RollerIntake intake;
     public Claw claw;
+    public Elevator elevator;
+
+
+    public void initDriveTrain() {
+        driveTrain = new DriveTrain();
+        driveTrain.setDefaultCommand(
+                new DriveCommand()
+        );
+    }
+
+    public void initShooterPID() {
+        shooterPID = new ShooterPID();
+    }
+
+    public void initExampleElevator() {
+        exampleElevator = new ExampleElevator();
+    }
+
+    public  void initArmAngle() {
+        armAngle = new IntakeArm();
+    }
+
+    public
+    void initLinearIntake() {
+        linearIntake = new LinearIntake();
+    }
+    public void initIntake() {
+        intake = new RollerIntake();
+    }
+    public void initClaw() {
+        claw = new Claw();
+    }
+    public void initElevator() {
+        elevator = new Elevator();
+    }
 
 
 
@@ -74,5 +111,4 @@ public class MMSystems {
         this.imu = new MMIMU(hardwareMap);
         CommandScheduler.getInstance().reset(); //reset the scheduler
     }
-
 }

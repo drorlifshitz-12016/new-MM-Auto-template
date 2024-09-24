@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Libraries.CuttlefishFTCBridge.src.devices.CuttleServo;
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.MMTeleOp;
-import org.firstinspires.ftc.teamcode.MMInitMethods;
 import org.firstinspires.ftc.teamcode.MMRobot;
 import org.firstinspires.ftc.teamcode.Utils.Configuration;
 import org.firstinspires.ftc.teamcode.Utils.OpModeType;
@@ -22,7 +21,7 @@ public class ScoringTest extends MMTeleOp {
 
     @Override
     public void onInit() {
-        MMInitMethods.initClaw();
+        MMRobot.getInstance().mmSystems.initClaw();
         servo = new CuttleServo(robot.mmSystems.controlHub, Configuration.CLAW_SCORING);
     }
 

@@ -39,6 +39,9 @@ public class MMRobot extends Robot {
         return instance;
     }
 
+    public synchronized void resetRobot(){
+        instance = null;
+    }
 
     //Systems
     public MMSystems mmSystems;
@@ -80,7 +83,7 @@ public class MMRobot extends Robot {
      */
     private void initTele() {
         //for example:
-        MMInitMethods.initShooterPID();
+        MMRobot.getInstance().mmSystems.initShooterPID();
     }
 
     /**

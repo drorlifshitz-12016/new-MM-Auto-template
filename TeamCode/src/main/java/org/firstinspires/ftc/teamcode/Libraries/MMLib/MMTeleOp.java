@@ -172,4 +172,11 @@ public abstract class MMTeleOp extends CommandOpMode {
         telemetry.update();                             //updates the telemetry
         */
     }
+
+    @Override
+    public void reset() {
+        super.reset();
+        MMRobot.getInstance().resetRobot();
+    }
+
 }

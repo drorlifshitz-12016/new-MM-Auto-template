@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.Libraries.CuttlefishFTCBridge.src.devices.
 import org.firstinspires.ftc.teamcode.MMRobot;
 import org.firstinspires.ftc.teamcode.Utils.Configuration;
 
-public class ArmAngle extends SubsystemBase {
+public class IntakeArm extends SubsystemBase {
 
     MMRobot mmRobot = MMRobot.getInstance();
 
@@ -23,7 +23,7 @@ public class ArmAngle extends SubsystemBase {
     }
 
 
-    public ArmAngle() {
+    public IntakeArm() {
         servoRight = new CuttleServo(mmRobot.mmSystems.controlHub, Configuration.ARM_ANGLE_RIGHT);
         servoLeft = new CuttleServo(mmRobot.mmSystems.controlHub, Configuration.ARM_ANGEL_LEFT);
     }

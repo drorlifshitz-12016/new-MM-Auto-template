@@ -5,7 +5,6 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.MMTeleOp;
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.PID.MMPIDCommand;
 import org.firstinspires.ftc.teamcode.Libraries.MMLib.PID.MMTuningFFCommand;
-import org.firstinspires.ftc.teamcode.MMInitMethods;
 import org.firstinspires.ftc.teamcode.MMRobot;
 import org.firstinspires.ftc.teamcode.Utils.OpModeType;
 
@@ -26,7 +25,7 @@ public class TeleOpUsageExample extends MMTeleOp {
     public void onInit() {
 
         //initializing the elevator
-        MMInitMethods.initExampleElevator();
+        MMRobot.getInstance().mmSystems.initExampleElevator();
 
         //creating custom command-bindings for tuning: (using dashboard)
 
@@ -52,6 +51,7 @@ public class TeleOpUsageExample extends MMTeleOp {
                         1
                 )
         );
+
 
     }
 }
