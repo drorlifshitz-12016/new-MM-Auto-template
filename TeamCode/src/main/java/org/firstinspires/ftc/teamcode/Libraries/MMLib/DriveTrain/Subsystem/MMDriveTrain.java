@@ -1,4 +1,6 @@
 package org.firstinspires.ftc.teamcode.Libraries.MMLib.DriveTrain.Subsystem;
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.geometry.Vector2d;
 import com.qualcomm.hardware.bosch.BHI260IMU;
@@ -36,20 +38,9 @@ public class MMDriveTrain extends SubsystemBase {
     private final CuttleMotor motorFL;
     private final CuttleMotor motorBL;
     private final CuttleMotor motorBR;
-    private final BHI260IMU imu;
-    private double yawOffset = 0;
 
     public MMDriveTrain() {
         super(); //register this subsystem, in order to schedule default command later on.
-        register();
-        imu = mmRobot.mmSystems.hardwareMap.get(BHI260IMU.class, Configuration.IMU);
-        BHI260IMU.Parameters imuParameters = new IMU.Parameters(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD, RevHubOrientationOnRobot.UsbFacingDirection.UP));
-        imuParameters.imuOrientationOnRobot.imuCoordinateSystemOrientationFromPerspectiveOfRobot().toOrientation(
-                AxesReference.INTRINSIC,
-                AxesOrder.ZXY,
-                AngleUnit.DEGREES
-        );
-        imu.initialize(imuParameters);
 
         motorFL = new CuttleMotor(mmRobot.mmSystems.controlHub, Configuration.DRIVE_TRAIN_FRONT_LEFT);
         motorBL = new CuttleMotor(mmRobot.mmSystems.controlHub, Configuration.DRIVE_TRAIN_BACK_LEFT);
@@ -64,7 +55,7 @@ public class MMDriveTrain extends SubsystemBase {
 
     public MMDriveTrain(double lastAngle){
         this();
-        setYaw(lastAngle);
+        mmRobot.mmSystems.imu.setYaw(lastAngle);
     }
 
     /**
@@ -107,49 +98,61 @@ public class MMDriveTrain extends SubsystemBase {
 
     }
 
+    /**
+     * this method sets the power to the motors, by this order:
+     * <p>
+     * frontLeft
+     * <p>
+     * backLeft
+     * <p>
+     * frontRight
+     * <p>
+     * backRight
+     * @param power array to set.
+     */
     private void setMotorPower(double[] power) {
         motorFL.setPower(power[0]);
         motorBL.setPower(power[1]);
         motorFR.setPower(power[2]);
         motorBR.setPower(power[3]);
+        updateTelemetry(power); //this line is optional
     }
+
+    /**
+     * this method turns the joystick values to arcade drive.
+     * @param x the value on the x axis
+     * @param y the value on the y axis
+     * @param yaw the value on the yaw axis
+     */
     public void drive(double x, double y, double yaw) {
         setMotorPower(joystickToPower(x, y, yaw));
     }
 
     /**
-     * this method turns the normal joystick values, from arcade drive, to field oriented drive.
+     * this method turns the joystick values to field oriented drive.
      * @param x the value on the x axis
      * @param y the value on the y axis
      * @param yaw the value on the yaw axis
      */
     public void fieldOrientedDrive(double x, double y, double yaw) {
         Vector2d joystickDirection = new Vector2d(x, y);
-        Vector2d fieldOrientedVector = joystickDirection.rotateBy(-getYawInDegrees());
+        Vector2d fieldOrientedVector = joystickDirection.rotateBy(-mmRobot.mmSystems.imu.getYawInDegrees());
         drive(fieldOrientedVector.getX(), fieldOrientedVector.getY(), yaw);
     }
 
     /**
-     * this method returns the yaw of the robot, while respecting a certain offset.
-     * @return the yaw of the robot
+     * this method prints to the dashboard the power of each motor.
+     * this is useful in order to graph and control the directions of the motors,
+     * as well as making sure every motor gets the power it needs programming wise.
+     * (so that u can easily blame it on electronics/mechanics)
+     * @param power
      */
-    public double getYawInDegrees() {
-        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES) + yawOffset;
-    }
-
-    /**
-     * set a new yaw to the robot
-     * @param newYaw the new yaw
-     */
-    public void setYaw(double newYaw) {
-        yawOffset = newYaw - imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
-    }
-
-    /**
-     * reset the yaw of the robot (reset field oriented drive)
-     */
-    public void resetYaw() {
-        setYaw(0);
+    public void updateTelemetry(double[] power) {
+        FtcDashboard.getInstance().getTelemetry().addData("frontLeft", power[0]);
+        FtcDashboard.getInstance().getTelemetry().addData("backLeft", power[1]);
+        FtcDashboard.getInstance().getTelemetry().addData("frontRight", power[2]);
+        FtcDashboard.getInstance().getTelemetry().addData("backRight", power[3]);
+        FtcDashboard.getInstance().getTelemetry().update();
     }
 
 }

@@ -173,6 +173,14 @@ public abstract class MMTeleOp extends CommandOpMode {
         */
     }
 
+    /**
+     * this method happens <b>AFTER</b> the opmode.
+     * <p>
+     * this is activated, when stop is requested/opmode is not running anymore.
+     * in this case, it is used to reset the {@link CommandScheduler} and the {@link MMRobot} singletons.
+     * <p>
+     * usually the uses of these are resets for next opmodes.
+     */
     @Override
     public void reset() {
         super.reset();
