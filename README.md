@@ -11,6 +11,7 @@ by clicking - CTRL + CLICK
 
 # and or you can just not read this and just troubleshoot yourself #
 
+
 this robot template uses the GOBildaPinPoint odometry computer for the IMU 
 
 the product page - 
@@ -22,5 +23,7 @@ DIFFERENT BRANCH FOR 4 BAR ODOMETRY
 but the idea behind this is that the user (you) still would have the full FTC RR 
 experience but with no of the buffer of making adjustments for road runner and for
 a undisturbed tuning process 
+
+and credit to J5155 from team #12087 for doing most of the work 
 
 ENJOY !!
