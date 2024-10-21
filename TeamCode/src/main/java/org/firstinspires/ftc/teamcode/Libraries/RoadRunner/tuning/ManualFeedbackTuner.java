@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.PinpointDrive;
-import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.SparkFunOTOSDrive;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.TankDrive;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.ThreeDeadWheelLocalizer;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.TwoDeadWheelLocalizer;
