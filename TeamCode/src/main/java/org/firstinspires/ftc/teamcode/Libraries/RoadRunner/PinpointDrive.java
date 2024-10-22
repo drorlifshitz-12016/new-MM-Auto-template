@@ -12,8 +12,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.GoBildaPinpointDriver;
 import org.firstinspires.ftc.teamcode.GoBildaPinpointDriverRR;
-import org.firstinspires.ftc.teamcode.MecanumDrive;
-import org.firstinspires.ftc.teamcode.messages.PoseMessage;
+import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.messages.PoseMessage;
+
 /**
  * Experimental extension of MecanumDrive that uses the Gobilda Pinpoint sensor for localization.
  * <p>
@@ -96,6 +96,7 @@ public class PinpointDrive extends MecanumDrive {
     @Override
     public PoseVelocity2d updatePoseEstimate() {
         if (lastPinpointPose != pose) {
+
             // RR localizer note:
             // Something else is modifying our pose (likely for relocalization),
             // so we override otos pose with the new pose.
