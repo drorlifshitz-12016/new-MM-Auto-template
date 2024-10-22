@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.tuning;
+package org.firstinspires.ftc.teamcode.Libraries.RoadRunner.tuning;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.reflection.ReflectionConfig;
@@ -12,7 +12,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
 import org.firstinspires.ftc.teamcode.*;
-
+import org.firstinspires.ftc.teamcode.GoBildaPinpointDriverRR ;
+import org.firstinspires.ftc.teamcode.GoBildaPinpointDriver ;
+import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.PinpointDrive;
+import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.TankDrive;
+import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.ThreeDeadWheelLocalizer;
+import org.firstinspires.ftc.teamcode.MecanumDrive;
+import org.firstinspires.ftc.teamcode.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.TwoDeadWheelLocalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -216,7 +223,7 @@ public final class TuningOpModes {
         manager.register(metaForClass(DeadWheelDirectionDebugger.class), new DeadWheelDirectionDebugger(dvf));
 
         manager.register(metaForClass(ManualFeedbackTuner.class), ManualFeedbackTuner.class);
-        manager.register(metaForClass(SplineTest.class), SplineTest.class);
+        manager.register(metaForClass(SplineTest.class), org.firstinspires.ftc.teamcode.tuning.SplineTest.class);
         manager.register(metaForClass(LocalizationTest.class), LocalizationTest.class);
 
         FtcDashboard.getInstance().withConfigRoot(configRoot -> {
