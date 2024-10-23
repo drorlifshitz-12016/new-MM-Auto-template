@@ -11,9 +11,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
-import org.firstinspires.ftc.teamcode.*;
-import org.firstinspires.ftc.teamcode.GoBildaPinpointDriverRR ;
-import org.firstinspires.ftc.teamcode.GoBildaPinpointDriver ;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.PinpointDrive;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.SparkFunOTOSDrive;

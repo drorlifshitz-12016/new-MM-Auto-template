@@ -91,12 +91,12 @@ public class PinpointDrive extends MecanumDrive {
             throw new RuntimeException(e);
         }
 
-        pinpoint.setPosition(pose);
+        //pinpoint.setPosition(pose);
     }
+
     @Override
     public PoseVelocity2d updatePoseEstimate() {
         if (lastPinpointPose != pose) {
-
             // RR localizer note:
             // Something else is modifying our pose (likely for relocalization),
             // so we override otos pose with the new pose.
@@ -104,8 +104,9 @@ public class PinpointDrive extends MecanumDrive {
             // I don't like this solution at all, but it preserves compatibility.
             // The only alternative is to add getter and setters, but that breaks compat.
             // Potential alternate solution: timestamp the pose set and backtrack it based on speed?
-            pinpoint.setPosition(pose);
+//          pinpoint.setPosition(pose);
         }
+
         pinpoint.update();
         pose = pinpoint.getPositionRR();
         lastPinpointPose = pose;
